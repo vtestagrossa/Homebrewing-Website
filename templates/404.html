@@ -1,0 +1,10 @@
+{% extends "unv_layout.html" %}
+{% block title %}
+404 - Page Not Found
+{% endblock %}
+{% block content %}
+<p class="body">
+    <!--prints the error message-->
+    {{ err }} <a href="{{ url_for('index') }}">Click here to return home.</a>
+    </p>
+{% endblock %}

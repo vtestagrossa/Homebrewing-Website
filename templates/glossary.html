@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}
+Glossary of Brewing terms
+{% endblock %}
+{% set active_page ='glossary' %}
+{% block content %}
+    <h1>Brewing Terminology</h1>
+<dl class="dl-body">
+<!--Loops through the 'glossary' dict and returns terms enclosed in definition
+term tags (and h3), and the definitions within the description tags-->
+{% for term, description in terms.items() %}
+    <dt><h3>{{ term }}</h3></dt>
+    <dd>{{ description }}</dd>
+{% endfor %}
+</dl>
+{% endblock %}

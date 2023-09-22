@@ -1,0 +1,20 @@
+{% extends "unv_layout.html" %}
+{% block title %}
+Register
+{% endblock %}
+{% set active_page ='register' %}
+{% block content %}
+<h1>Registration Page</h1>
+<hr />
+<!--Form for registration.-->
+<form method="POST" action="">
+    <ul class="form">
+        {{ form.hidden_tag() }}
+        <li>{{ form.username }}</li>
+        <li>{{ form.password }}</li>
+        <li>{{ form.confirm }}</li>
+        <li>{{ form.submit }}</li>
+    </ul>
+</form>
+<a href="{{ url_for('login') }}">Already have an account? Log in.</a>
+{% endblock %}

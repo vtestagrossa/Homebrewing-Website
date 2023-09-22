@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %}
+My Brews
+{% endblock %}
+{% set active_page ='brews' %}
+{% block content %}
+<h1>My Homebrews</h1>
+<p class="p-body">
+    The following images are from my first two batches of beer. I used a kit from Northern Brewer to make two IPAs using malt extract
+    and a hybrid of malt extract/grains for the second brew. They're not in order and aren't a complete record of my brew days, but 
+    they show some of the fun parts of the process.
+</p>
+<div class="images-body">
+    <!--uses url_for to set the image source to the static folder.
+    filenames are all within images.-->
+    <table class="tb-image">
+        <tr>
+            <td><img src={{ url_for('static', filename='images/brew_2_1.jpg') }} height="300"></img></td>
+            <td><img src={{ url_for('static', filename='images/brew_2_2.jpg') }} height="300"></img></td>
+            <td><img src={{ url_for('static', filename='images/tasting_1.jpg') }} height="300"></img></td>
+        </tr>
+        <tr>
+            <td><img src={{ url_for('static', filename='images/tasting_2.jpg') }} height="300"></img></td>
+            <td><img src={{ url_for('static', filename='images/tasting_3.jpg') }} height="300"></img></td>
+            <td><img src={{ url_for('static', filename='images/tasting_4.jpg') }} height="300"></img></td>
+        </tr>
+        <tr>
+            <td><img src={{ url_for('static', filename='images/tasting_5.jpg') }} height="300"></img></td>
+            <td><img src={{ url_for('static', filename='images/tasting_6.jpg') }} height="300"></img></td>
+            <td><img src={{ url_for('static', filename='images/tasting_7.jpg') }} height="300"></img></td>
+        </tr>
+        <tr>
+            <td><img src={{ url_for('static', filename='images/ingredients.jpg') }} height="300"></img></td>
+            <td><img src={{ url_for('static', filename='images/bottling_1.jpg') }} height="300"></img></td>
+            <td><img src={{ url_for('static', filename='images/bottling_2.jpg') }} height="300"></img></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

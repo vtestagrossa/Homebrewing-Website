@@ -1,0 +1,9 @@
+{% extends "unv_layout.html" %}
+{% block title %}
+{{ err }} - Internal Server Error
+{% endblock %}
+{% block content %}
+<p class="body">
+    {{ err }} <a href="{{ url_for('index') }}">Click here to return home.</a>
+    </p>
+{% endblock %}

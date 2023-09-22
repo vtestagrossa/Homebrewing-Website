@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}
+Suppliers
+{% endblock %}
+{% set active_page ='links' %}
+{% block content %}
+<h1>Homebrew Suppliers</h1>
+<p class="p-body">
+    The following are all suppliers I like to use from time to time. From brewing equipment, to consumables.
+    There is no best supplier, although I do really like Northern Brewer because they have something in every
+    category. Shop around for whatever suits your needs. Kits will take you pretty far, but you might find your
+    needs change as you become more competent as a brewer.
+</p>
+<div class="body-links">
+    <!--Runs a loop to display links from a dictionary within h2 tags-->
+    {% for term, description in terms.items() %}
+        <h2><a href="{{ term }}" target="_blank">{{ description }}</a></h2>
+    {% endfor %}
+</div>
+{% endblock %}

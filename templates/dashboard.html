@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}
+{{ name }}'s User Dashboard
+{% endblock %}
+{% set active_page ='dashboard' %}
+{% block content %}
+<h1>Hello, {{ name }}!</h1><hr />
+<!--Form for resetting password-->
+<form method="POST" action="">
+    <ul class="form">
+        {{ form.hidden_tag() }}
+        <li>{{ form.old_password }}</li>
+        <li>{{ form.password }}</li>
+        <li>{{ form.confirm }}</li>
+        <li>{{ form.submit }}</li>
+    </ul>
+</form>
+{% endblock %}

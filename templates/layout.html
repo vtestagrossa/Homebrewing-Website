@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--Places all child template titles within the title
+        tags to remove some of the boilerplate-->
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}" />
+    </head>
+
+    <body>
+        <!--Places a navbar at the top of the page with 
+        links embedded. Uses url_for to link to templates
+        for rendering-->
+        <div class="navbar">
+            <a id="index" href="{{ url_for('index') }}" class="navbar-item{{ '-brand' if active_page == 'index' }}">Home</a>
+            <a id="brew" href="{{ url_for('brew') }}" class="navbar-item{{ '-brand' if active_page == 'brew' }}">Brew Day</a>
+            <a id="links" href="{{ url_for('links') }}" class="navbar-item{{ '-brand' if active_page == 'links' }}">Suppliers</a>
+            <a id="glossary" href="{{ url_for('glossary') }}" class="navbar-item{{ '-brand' if active_page == 'glossary' }}">Glossary</a>
+            <a id="brews" href="{{ url_for('brews') }}" class="navbar-item{{ '-brand' if active_page == 'brews' }}">My Brews</a>
+            <a id="dashbooard" href="{{ url_for('dashboard') }}" class="navbar-item{{ '-brand' if active_page == 'dashboard' }}">User Dashboard</a>
+            <a id="logout" href="{{ url_for('logout') }}" class="navbar-item{{ '-brand' if active_page == 'logout' }}">Log Out</a>
+        </div>
+
+        <div class="body-content">
+            <!--Gets all flash messages with the filter "message" and displays them above the content block-->
+            {% with messages = get_flashed_messages(category_filter=["message"]) %}
+                {% if messages %}
+                    <ul class="message">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <!--Places all child templates within a predefined
+            div tags for easy formatting-->
+            {% block content %}
+            {% endblock %}
+            <!--Gets all error messages with the filter "error" and displays them after the content block-->
+            {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                {% if errors %}
+                    <ul class="error">
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <hr/>
+            <footer>
+                <!-- Date and time displayed in the footer for
+                all pages that inherit from layout.html -->
+                <p>The date and time is: {{ date_time }}</p>
+            </footer>
+        </div>
+    </body>
+</html>

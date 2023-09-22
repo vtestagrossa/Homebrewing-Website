@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--Needed a separate layout to inherit from that only had the login and registration links displayed.
+This is what unregistered users will see-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--Places all child template titles within the title
+        tags to remove some of the boilerplate-->
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}" />
+    </head>
+
+    <body>
+        <!--Places a navbar at the top of the page with 
+        links embedded. Uses url_for to link to templates
+        for rendering-->
+        <div class="navbar">
+            <a id="login" href="{{ url_for('login') }}" class="navbar-item{{ '-brand' if active_page == 'login' }}">Log in</a>
+            <a id="register" href="{{ url_for('register') }}" class="navbar-item{{ '-brand' if active_page == 'register' }}">Register</a>
+        </div>       
+        <div class="body-content">
+            <!--Gets all flash messages with the filter "message" and displays them above the content block-->
+            {% with messages = get_flashed_messages(category_filter=["message"]) %}
+                {% if messages %}
+                    <ul class="message">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <!--Places all child templates within a predefined
+            div tags for easy formatting-->
+            {% block content %}
+            {% endblock %}
+            <!--Gets all error messages with the filter "error" and displays them after the content block-->
+            {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                {% if errors %}
+                    <ul class="error">
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <hr/>
+            <footer>
+                <!-- Date and time displayed in the footer for
+                all pages that inherit from layout.html -->
+                <p>The date and time is: {{ date_time }}</p>
+            </footer>
+        </div>
+    </body>
+</html>
